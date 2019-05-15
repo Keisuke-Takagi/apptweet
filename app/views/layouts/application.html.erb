@@ -22,10 +22,15 @@
   <nav>
   <div class="nav-wrapper">
     <a href="/" class="brand-logo">apptweet</a>
+    
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="sass.html">ログイン</a></li>
-      <li><a href="badges.html">新規投稿</a></li>
-
+     <% if user_signed_in? %>
+     <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+     <%= link_to "新規投稿する", new_tweet_path, method: :get%>
+     <% else %>
+      <li><a href="/users/sign_in">ログイン</a></li>
+      <li><a href="/users/sign_up">新規登録</a></li>
+      <% end %>
     </ul>
   </div>
 </nav>
