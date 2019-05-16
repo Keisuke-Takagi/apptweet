@@ -48,6 +48,9 @@ div.a_tweet {
         background: #f1cc73;
         border: solid 3px  #f1cc73;/*線*/
         border-radius: 10px;/*角の丸み*/
+        word-break: break-all;
+        text-align: left;
+        font-family: 'Century Gothic';
 
         div.author_name{
           position: absolute;
