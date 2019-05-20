@@ -1,9 +1,11 @@
   <div class="contents row">
-    <%= form_tag("/tweets/#{@tweet.id}", method: :patch ) do %>
+    <%= form_for (@tweet) do |f| %>
       <h3>
         編集する
       </h3>
-      <textarea cols="30" name="text" placeholder="text" rows="10"><%= @tweet.text %></textarea>
-      <input type="submit" value="SENT">
+      <%= f.text_area :text, placeholder: '編集欄', style: 'width100%;height: 300px' %>
+      <%= button_tag type: "submit", class: "btn btn-block" do %>
+        編集する<i class="icon-arrow-right"></i>
+        <% end%>
     <% end %>
   </div>
