@@ -1,4 +1,5 @@
 class TweetsController < ApplicationController
+  before_action :define_tweets, except: [:new,:create,:update]
   def index
     @tweets = Tweet.includes(:user).page(params[:page]).per(5).order("created_at DESC")
   end
@@ -25,16 +26,19 @@ class TweetsController < ApplicationController
   def update
     tweet = Tweet.find(params[:id])
     if tweet.user_id == current_user.id
-      tweet.update(tweet_params2)
+      tweet.update(tweet_params)
     end
     redirect_to ""
+  end
+
+  def define_tweets
+    tweets = Tweet.all
   end
 
   private
   def tweet_params
     params.require(:tweet).permit(:image, :text)
   end
-  def tweet_params2
-    params.permit(:image, :text)
-  end
+
+
 end

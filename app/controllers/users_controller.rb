@@ -1,5 +1,8 @@
-class UsersController < ApplicationController
+class UsersController < TweetsController
   def search
-    @products = Product.where('nickname LIKE(?)', "%#{params[:keyword]}%").limit(20).page(params[:page]).per(5).order("created_at DESC")
+    @users = User.where('nickname LIKE(?)', "%#{params[:keyword]}%")
+    @users.each do |user|
+      @tweets = tweets.find(user_id: user.id)
+    end
   end
 end
